@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".preActivity"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true">
+
+    <ImageView
+        android:layout_width="410dp"
+        android:layout_height="188dp"
+        android:src="@drawable/logo2"
+        android:id="@+id/logo"
+        android:layout_marginTop="30dp"
+        />
+
+    <Button
+        android:id="@+id/st"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:text="Student"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff"
+        android:background="@drawable/edit_text_shape"
+        android:layout_toRightOf="@id/ft"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        />
+
+    <Button
+        android:id="@+id/ft"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:text="Faculty"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/edit_text_shape"
+        android:textColor="#ffffff"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        />
+</RelativeLayout>

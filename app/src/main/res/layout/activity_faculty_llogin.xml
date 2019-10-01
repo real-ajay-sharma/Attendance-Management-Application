@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".faculty.facultyLLogin"
+    >
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/til10"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        app:boxStrokeColor="@color/colorGoogle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+
+    <EditText
+        android:id="@+id/emai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint=" Enter Email"
+        android:inputType="textEmailAddress"
+        />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/til9"
+        android:layout_below="@id/til10"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        app:boxStrokeColor="@color/colorGoogle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+
+        <EditText
+            android:id="@+id/pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=" Password"
+            android:ems="10"
+            android:inputType="textPassword"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:text="login"
+        android:layout_below="@id/forgot_password_f"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/edit_text_shape"
+        android:textColor="#ffffff"
+        />
+
+    <TextView
+        android:id="@+id/cna"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create new account"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_marginBottom="50dp"
+        android:textColor="@color/colorGoogle"
+        />
+
+    <TextView
+        android:id="@+id/forgot_password_f"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot password?"
+        android:layout_below="@id/til9"
+        android:layout_margin="20dp"
+        android:textColor="@color/colorGoogle"
+        />
+
+</RelativeLayout>

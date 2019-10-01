@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4E91FC</color>
+    <color name="colorPrimaryDark">#4E91FC</color>
+    <color name="colorAccent">#4E91FC</color>
+    <color name="colorMad">	#F35C13</color>
+    <color name="colorGoogle">#4E91FC</color>
+</resources>

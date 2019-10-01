@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".faculty.facultyProfile"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The subject to attend is listed here..."
+        android:textSize="20sp"
+        android:id="@+id/texts"
+        android:layout_margin="10dp"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lvf"
+        android:layout_below="@id/texts"
+        >
+
+    </ListView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:id="@+id/fabf"
+        android:elevation="10dp"
+        android:src="@drawable/ic_add_black_24dp"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/empty_view"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/android_logo"
+            android:id="@+id/android_logo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="It's a bit lonely here. Add subject to attend... "
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:layout_below="@id/android_logo"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            />
+    </RelativeLayout>
+
+
+</RelativeLayout>

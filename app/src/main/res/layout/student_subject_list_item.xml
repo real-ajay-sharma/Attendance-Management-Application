@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:textAppearance="?android:attr/textAppearanceListItemSmall">
+
+    <TextView
+        android:layout_width="5dp"
+        android:layout_height="30dp"
+        android:id="@+id/line_text"
+        />
+
+    <TextView
+        android:id="@+id/subject_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@id/line_text"
+        android:fontFamily="sans-serif-black"
+        android:text="abkjaka"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/subject_name"
+        android:textSize="20sp"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:fontFamily="sans-serif-black"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:id="@+id/attendance_percentage"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="attendance"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:layout_below="@id/subject_name"
+        android:layout_marginTop="8dp"
+        android:id="@+id/attendance_measurement"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textSize="20sp"
+        android:text="hey i am ajay"
+        android:layout_marginTop="80dp"
+        android:id="@+id/status"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_done_black_24dp"
+        android:layout_toRightOf="@id/attendance_measurement"
+        android:layout_below="@id/line_text"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/done_image"
+        />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_clear_black_24dp"
+        android:layout_toRightOf="@id/attendance_measurement"
+        android:layout_below="@id/line_text"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="100dp"
+        android:id="@+id/clear_image"
+        />
+
+</RelativeLayout>

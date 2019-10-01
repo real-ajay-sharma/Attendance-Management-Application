@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".faculty.studentsName">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textf"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lvsn"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/textf"
+        >
+    </ListView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fabc"
+        android:layout_alignParentRight="true"
+        android:elevation="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_add_black_24dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/empty_view"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/android_logo"
+            android:id="@+id/android_logo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="No student registered in this subject. Add students to attend..."
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:layout_below="@id/android_logo"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

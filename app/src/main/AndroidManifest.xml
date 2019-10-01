@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.cloudfirestore">
+
+    <application
+        android:allowBackup="true"
+        android:appComponentFactory="@string/common_google_play_services_enable_button"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:appComponentFactory"
+        tools:targetApi="p">
+        <activity android:name=".forgotPassword"></activity>
+        <activity android:name=".faculty.checkAttendance" />
+        <activity
+            android:name=".addStudentSubject"
+            android:label="Add Student" />
+        <activity
+            android:name=".studentProfile"
+            android:label="Student Profile" />
+        <activity
+            android:name=".faculty.deleteSubjects"
+            android:label="Delete Subject" />
+        <activity
+            android:name=".faculty.deleteStudents"
+            android:label="Delete Student" />
+        <activity
+            android:name=".faculty.addSubject"
+            android:label="Add Subject" />
+        <activity
+            android:name=".faculty.addStudent"
+            android:label="Add Student" />
+        <activity
+            android:name=".faculty.studentsName"
+            android:label="Students Name" />
+        <activity
+            android:name=".faculty.dateActivity"
+            android:label="Date" />
+        <activity
+            android:name=".faculty.facultyProfile"
+            android:label="Subjects" />
+        <activity
+            android:name=".faculty.createFaculty"
+            android:label="Create Account" />
+        <activity
+            android:name=".faculty.facultyLLogin"
+            android:label="Login" />
+        <activity
+            android:name=".MainActivity"
+            android:label="Login" />
+        <activity
+            android:name=".newUser"
+            android:label="Create Account" />
+        <activity android:name=".preActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
