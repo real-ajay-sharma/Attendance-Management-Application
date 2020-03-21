@@ -3,10 +3,13 @@ package com.example.cloudfirestore.faculty;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cloudfirestore.R;
@@ -30,6 +33,8 @@ public class createFaculty extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference mref ;
     private final String NAME_KEY = "name";
+    ProgressDialog pd;
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +44,15 @@ public class createFaculty extends AppCompatActivity {
         name = findViewById(R.id.facultyName);
         email = findViewById(R.id.facultyEmail);
         password = findViewById(R.id.facultyPassword);
-
+        pd = new ProgressDialog(this);
+        pd.setMessage("Loading...");
         bt = findViewById(R.id.submit);
+        tv=findViewById(R.id.login_text);
 
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                pd.show();
                 if(!valid()) {
 
                     Email = email.getText().toString().trim();
@@ -66,6 +73,17 @@ public class createFaculty extends AppCompatActivity {
                 }
                 else
                     Toast.makeText(createFaculty.this, "Error!", Toast.LENGTH_SHORT).show();
+                pd.dismiss();
+            }
+        });
+
+
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(createFaculty.this,facultyLLogin.class));
+                finish();
             }
         });
     }

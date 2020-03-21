@@ -16,12 +16,21 @@
         android:textSize="20sp"
         />
 
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All Present"
+        android:textSize="20sp"
+        android:layout_below="@id/textf"
+        android:id="@+id/all_present"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"/>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/lvsn"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/textf"
+        android:layout_below="@id/all_present"
         >
     </ListView>
 

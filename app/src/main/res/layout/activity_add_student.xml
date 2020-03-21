@@ -27,6 +27,7 @@
         android:layout_centerHorizontal="true"
         />
     </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/add_button"
             android:layout_width="100dp"

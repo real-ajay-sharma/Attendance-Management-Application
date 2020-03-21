@@ -3,6 +3,8 @@ package com.example.cloudfirestore.faculty;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,8 +37,11 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.zip.Inflater;
@@ -49,11 +59,14 @@ public class studentsName extends AppCompatActivity {
     ProgressDialog pd ;
     TextView tv;
     View view;
+    EditText edittext;
+    Calendar myCalendar;
+    Switch sw;
 
     @Override
     protected void onStart(){
         super.onStart();
-
+        //date = edittext.getText().toString().trim();
         subject = getIntent().getExtras().getString("subject");
 
         mdocref2 = db.collection("faculty").document(firebaseAuth.getUid()).collection("subjects")
@@ -79,6 +92,7 @@ public class studentsName extends AppCompatActivity {
         });
 
     }
+    @SuppressLint({"SetTextI18n", "CutPasteId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,13 +101,20 @@ public class studentsName extends AppCompatActivity {
         subject  = Objects.requireNonNull(getIntent().getExtras()).getString("subject");
         date = getIntent().getExtras().getString("date");
 
+        this.myCalendar = Calendar.getInstance();
+
         lvsn = findViewById(R.id.lvsn);
         fabc = findViewById(R.id.fabc);
+        //datebutton = findViewById(R.id.datebutton);
         tv = findViewById(R.id.textf);
+       // edittext = findViewById(R.id.Birthday);
+        sw = findViewById(R.id.all_present);
         view = findViewById(R.id.empty_view);
         pd = new ProgressDialog(this);
         pd.setMessage("Loading...");
 
+       // updateLabel();
+        //date = edittext.getText().toString().trim();
         copyStudentsNameToDate();
         loadStudntsName();
 
@@ -108,11 +129,12 @@ public class studentsName extends AppCompatActivity {
                         .document(subject).collection("Date").document(date);
 
                 Map<String,Object> map = new HashMap<>();
-                if(attendance.getAttendance().equals("a")){
-                    map.put(name.getName(),"p");
+
+                if(attendance.getAttendance().equals("A")){
+                    map.put(name.getName(),"P");
                 }
                 else
-                    map.put(name.getName(),"a");
+                    map.put(name.getName(),"A");
                 mdocref2.set(map,SetOptions.merge());
             }
         });
@@ -131,6 +153,54 @@ public class studentsName extends AppCompatActivity {
         tv.setText("Students Registered in "+subject+" are listed below...");
         lvsn.setEmptyView(view);
 
+       /* this.edittext= (EditText) findViewById(R.id.Birthday);
+        final DatePickerDialog.OnDateSetListener date2 = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
+        edittext.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(studentsName.this, date2, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        datebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                date = edittext.getText().toString().trim();
+                //pd.show();
+                copyStudentsNameToDate();
+                loadStudntsName();
+                //pd.dismiss();
+                date = edittext.getText().toString().trim();
+            }
+        });
+*/
+       sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               if(isChecked){
+                   setAllPresent();
+               }
+               else
+                    setAllAbsent();
+           }
+       });
     }
 
     private void copyStudentsNameToDate()
@@ -202,8 +272,10 @@ public class studentsName extends AppCompatActivity {
                         if(map != null){
 
                             ArrayList<student> arrayList = new ArrayList<>();
+                            long i=1;
                             for(Map.Entry<String,Object> entry : map.entrySet()){
                                 arrayList.add(new student(entry.getKey(),entry.getValue().toString()));
+                                i++;
                             }
                             studentsNameAdapter adapter = new studentsNameAdapter(studentsName.this,arrayList);
                             lvsn.setAdapter(adapter);
@@ -233,7 +305,6 @@ public class studentsName extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -251,5 +322,90 @@ public class studentsName extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void updateLabel() {
+        String myFormat = "dd MMM yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        edittext.setText(sdf.format(myCalendar.getTime()));
+    }
+
+    private void setAllPresent(){
+
+        mdocref2 = db.collection("faculty").document(Objects.requireNonNull(firebaseAuth.getUid())).collection("subjects")
+                .document(subject).collection("Date").document(date);
+
+        mdocref2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if(document != null){
+                        Map<String,Object> map = new HashMap<>();
+                        map = document.getData();
+                        if(map != null){
+
+                            Map<String,Object> map2 = new HashMap<>();
+                            for(Map.Entry<String,Object> entry : map.entrySet()){
+                               map2.put(entry.getKey(),"P");
+                            }
+                            mdocref2.set(map2);
+                            pd.dismiss();
+                        }
+                        else{
+                            pd.dismiss();
+                           // Toast.makeText(studentsName.this, "No data present", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                        pd.dismiss();
+                }
+                else{
+                    pd.dismiss();
+                    Toast.makeText(studentsName.this, "Error!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+    private void setAllAbsent(){
+        mdocref2 = db.collection("faculty").document(Objects.requireNonNull(firebaseAuth.getUid())).collection("subjects")
+                .document(subject).collection("Date").document(date);
+
+        mdocref2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if(document != null){
+                        Map<String,Object> map = new HashMap<>();
+                        map = document.getData();
+                        if(map != null){
+
+                            Map<String,Object>  map2 = new HashMap<>();
+                            for(Map.Entry<String,Object> entry : map.entrySet()){
+                                map2.put(entry.getKey(),"A");
+                            }
+                            mdocref2.set(map2);
+                            pd.dismiss();
+                        }
+                        else{
+                            pd.dismiss();
+                            //Toast.makeText(studentsName.this, "No data present", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else
+                        pd.dismiss();
+                }
+                else{
+                    pd.dismiss();
+                    Toast.makeText(studentsName.this, "Error!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

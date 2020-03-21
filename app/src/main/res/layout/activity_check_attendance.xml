@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout android:layout_height="match_parent"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -10,10 +11,81 @@
     android:id="@+id/text_view2"
     android:textSize="20sp"
     android:textAppearance="?android:attr/textAppearanceListItemSecondary"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="RedundantNamespace" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Below:"
+        android:layout_below="@id/text_view2"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/textAppearanceListItemSecondary"
+        android:id="@+id/below" />
+
+    <EditText
+        android:id="@+id/below_edittext"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view2"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/below"
+        android:background="@drawable/attendance_edit_text_shape"
+        android:inputType="numberDecimal"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:text="100"
+        android:layout_marginStart="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Above:"
+        android:layout_below="@id/text_view2"
+        android:layout_toRightOf="@id/below_edittext"
+        android:textSize="20sp"
+        android:textAppearance="?android:attr/textAppearanceListItemSecondary"
+        android:id="@+id/above"
+        android:layout_marginLeft="20dp"
+        />
+
+    <EditText
+        android:id="@+id/above_edittext"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view2"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/above"
+        android:background="@drawable/attendance_edit_text_shape"
+        android:layout_marginStart="5dp"
+        android:inputType="numberDecimal"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:text="0" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/find_attendance"
+        android:layout_toRightOf="@id/above_edittext"
+        android:layout_below="@id/text_view2"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="50dp"
+        tools:ignore="RtlHardcoded"
+        android:background="@drawable/edit_text_shape"
+        android:text="Find"
+        android:textColor="#ffffff"
+        android:layout_marginRight="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv2"
+        android:layout_below="@id/find_attendance"
+        android:textSize="20sp"/>
 <ListView
-    android:layout_below="@id/text_view2"
+    android:layout_below="@id/tv2"
     android:layout_marginTop="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -21,9 +93,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".faculty.checkAttendance"
-    android:id="@+id/lvca"
-    >
+    android:id="@+id/lvca">
 
 </ListView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No student in this range"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

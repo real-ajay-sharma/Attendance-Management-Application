@@ -14,9 +14,29 @@
         android:text="The subject to attend is listed here..."
         android:textSize="20sp"
         android:id="@+id/texts"
+        android:layout_below="@id/date_edit_text"
         android:layout_margin="10dp"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date:"
+        android:id="@+id/date_text"
+        android:textSize="25sp"
+        android:layout_margin="10dp"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        />
+
+    <EditText
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:id="@+id/date_edit_text"
+        android:hint="choose date"
+        android:layout_toRightOf="@id/date_text"
+        android:inputType="date"
+        android:background="@drawable/attendance_edit_text_shape"/>
 
     <ListView
         android:layout_width="match_parent"

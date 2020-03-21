@@ -13,8 +13,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:appComponentFactory"
-        tools:targetApi="p">
-        <activity android:name=".forgotPassword"></activity>
+        tools:targetApi="p"> 
+        <activity android:name=".preActivity"></activity>
+        <activity android:name=".forgotPassword" />
         <activity android:name=".faculty.checkAttendance" />
         <activity
             android:name=".addStudentSubject"
@@ -55,7 +56,7 @@
         <activity
             android:name=".newUser"
             android:label="Create Account" />
-        <activity android:name=".preActivity">
+        <activity android:name=".splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

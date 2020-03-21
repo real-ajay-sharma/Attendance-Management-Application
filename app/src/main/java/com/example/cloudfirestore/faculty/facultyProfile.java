@@ -3,6 +3,7 @@ package com.example.cloudfirestore.faculty;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,7 +33,10 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 import javax.annotation.Nullable;
 
@@ -46,6 +52,9 @@ public class facultyProfile extends AppCompatActivity {
     private final String SUBJECTS_KEY = "subjects";
     ProgressDialog pd ;
     View v;
+    EditText et;
+    String date;
+    Calendar myCalendar = Calendar.getInstance();
 
     @Override
     protected void onStart()
@@ -65,14 +74,19 @@ public class facultyProfile extends AppCompatActivity {
         pd = new ProgressDialog(this);
         pd.setMessage("Loading...");
         v = findViewById(R.id.empty_view);
+        et = findViewById(R.id.date_edit_text);
+        updateLabel();
         displaySubjects();
 
         lvf.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                startActivity(new Intent(facultyProfile.this,dateActivity.class)
-                        .putExtra("subject",parent.getItemAtPosition(position)+""));
+                date = et.getText().toString();
+                String subject = (String)parent.getItemAtPosition(position);
+                startActivity(new Intent(facultyProfile.this,studentsName.class)
+                        .putExtra("subject",subject.substring(3))
+                        .putExtra("date",date));
 
             }
         });
@@ -87,6 +101,31 @@ public class facultyProfile extends AppCompatActivity {
         });
 
         lvf.setEmptyView(v);
+
+        final DatePickerDialog.OnDateSetListener date2 = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
+        et.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(facultyProfile.this, date2, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
 
     }
 
@@ -108,9 +147,11 @@ public class facultyProfile extends AppCompatActivity {
                         }
                         else
                         {
+                            long i=1;
                             for(QueryDocumentSnapshot qds: queryDocumentSnapshots){
 
-                                arrayList.add(qds.getId());
+                                arrayList.add(i+". "+qds.getId());
+                                i++;
                                 //  Toast.makeText(facultyProfile.this, qds.getId()+"", Toast.LENGTH_SHORT).show();
                             }
 
@@ -154,5 +195,11 @@ public class facultyProfile extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    private void updateLabel() {
+        String myFormat = "dd MMM yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        et.setText(sdf.format(myCalendar.getTime()));
     }
 }
